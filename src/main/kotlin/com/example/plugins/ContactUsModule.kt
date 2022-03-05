@@ -8,10 +8,10 @@ import io.ktor.routing.*
 fun Application.contactUsModule() {
     routing {
         get("/contact_us/{user_id}") {
-            println("uri : ${call.request.uri}")
-            println("headers: ${call.request.headers.names()}")
-            println("User-Agent : ${call.request.headers["User-Agent"]}")
-            println("query params : ${call.request.queryParameters["name"] ?: "noname"}")
+            log.info("uri : ${call.request.uri}")
+            log.info("headers: ${call.request.headers.names()}")
+            log.info("User-Agent : ${call.request.headers["User-Agent"]}")
+            log.info("query params : ${call.request.queryParameters["name"] ?: "noname"}")
 
             /*
             the url params is coming in different types so in backend must create validation
