@@ -13,20 +13,23 @@ import io.ktor.server.netty.*
 //@Suppress("unused")
 //fun Application.module() {
 //    configureRouting()
+//    contactUsModule()
 //}
 
 
 fun main() {
     embeddedServer(Netty, port = 8080, host = "0.0.0.0") {
-        install(Routing){
-            homeRoute()
-        }
+//        install(Routing){
+//            homeRoute()
+//        }
+        configureRouting()
+        contactUsModule()
     }.start()
 }
 
 
-fun Routing.homeRoute() {
-    get("/") {
-        call.respond("Hello there ")
-    }
-}
+//fun Routing.homeRoute() {
+//    get("/") {
+//        call.respond("Hello there ")
+//    }
+//}
