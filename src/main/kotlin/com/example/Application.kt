@@ -3,8 +3,6 @@ package com.example
 import io.ktor.application.*
 import com.example.plugins.*
 import io.ktor.features.*
-import io.ktor.response.*
-import io.ktor.routing.*
 import io.ktor.serialization.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*

@@ -9,7 +9,9 @@ import io.ktor.request.*
 fun Application.configureRouting() {
     routing {
         get("/") {
-            call.respondText("Hello World!")
+            val res = userResponse(name = "name1", data = "some data")
+            call.response.headers.append("foo", "bar")
+            call.respond(res)
         }
     }
 }
