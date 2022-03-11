@@ -14,7 +14,7 @@ fun Application.contactUsModule() {
             log.info("query params : ${call.request.queryParameters["name"] ?: "noname"}")
 
             /*
-            the url params is coming in different types so in backend must create validation
+            the url params is coming in different types so in backend must create validation by my self
             */
 
             call.respond(
@@ -23,5 +23,12 @@ fun Application.contactUsModule() {
                         "username: ${call.request.queryParameters["name"] ?: "noname"}"
             )
         }
+
+        post("/login") {
+            val body = call.receive<UserLogin>()
+            log.info("$body")
+            call.respond("name: ${body.name}, pass: ${body.password}")
+        }
     }
 }
+

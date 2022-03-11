@@ -2,13 +2,15 @@ package com.example
 
 import io.ktor.application.*
 import com.example.plugins.*
+import io.ktor.features.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import io.ktor.serialization.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
+import kotlinx.serialization.json.Json
 
-//fun main(args: Array<String>): Unit =
-//    io.ktor.server.netty.EngineMain.main(args)
+//fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 //
 //@Suppress("unused")
 //fun Application.module() {
@@ -19,17 +21,17 @@ import io.ktor.server.netty.*
 
 fun main() {
     embeddedServer(Netty, port = 8080, host = "0.0.0.0") {
-//        install(Routing){
-//            homeRoute()
-//        }
+        // as middleware
+        install(CallLogging)
+        install(ContentNegotiation) {
+            json(Json {
+                prettyPrint = true
+                isLenient = true
+            })
+        }
+
         configureRouting()
         contactUsModule()
-    }.start()
+
+    }.start(wait = true)
 }
-
-
-//fun Routing.homeRoute() {
-//    get("/") {
-//        call.respond("Hello there ")
-//    }
-//}
